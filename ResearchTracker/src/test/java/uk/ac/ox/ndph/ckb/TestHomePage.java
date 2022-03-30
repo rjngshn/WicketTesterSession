@@ -21,10 +21,9 @@ public class TestHomePage
     public void userPageRendersSuccessfully()
     {
         System.out.println("Testing userPageRendersSuccessfully ");
-//        tester.getHttpSession().setAttribute("userName", "Test user 1");
         tester.getRequest().getSession().setAttribute("userName", "Test user 1");
-        //start and render the test page
         System.out.println("Uesr name in session:" + tester.getHttpSession().getAttribute("userName"));
+        //start and render the test page
         tester.startPage(UserPage.class);
         //assert rendered page class
         tester.assertRenderedPage(UserPage.class);
