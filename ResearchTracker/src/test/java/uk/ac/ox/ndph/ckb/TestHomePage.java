@@ -21,14 +21,14 @@ public class TestHomePage
     public void userPageRendersSuccessfully()
     {
         System.out.println("Testing userPageRendersSuccessfully ");
-        tester.getHttpSession().setAttribute("userName", "User set via tests");
-        tester.getRequest().setAttribute("userName", "User set via tests");
+//        tester.getHttpSession().setAttribute("userName", "Test user 1");
+        tester.getRequest().getSession().setAttribute("userName", "Test user 1");
         //start and render the test page
         System.out.println("Uesr name in session:" + tester.getHttpSession().getAttribute("userName"));
         tester.startPage(UserPage.class);
         //assert rendered page class
         tester.assertRenderedPage(UserPage.class);
-        tester.assertModelValue("txtUserName", "User set via tests");
+        tester.assertModelValue("txtUserName", "Test user 1");
         System.out.println("Complete testing userPageRendersSuccessfully ");
     }
 }
