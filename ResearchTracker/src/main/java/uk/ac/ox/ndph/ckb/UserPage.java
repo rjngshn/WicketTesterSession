@@ -15,9 +15,12 @@ public class UserPage extends WebPage {
     protected void onInitialize() 
     {
         super.onInitialize();
-        Session session = getSession();
-        userName = session.getAttribute("userName").toString();
+        AppSession session = (AppSession)getSession();
+        userName = session.getUserName();
         System.out.println("UserPage: user is " + userName);
+        if (userName == null)
+            userName = "user name is null";
         add(new TextField<>("txtUserName", Model.of(userName)));
     } 
 }
+
