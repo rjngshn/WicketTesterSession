@@ -1,5 +1,6 @@
 package uk.ac.ox.ndph.ckb;
 
+import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,23 @@ public class TestHomePage
     public void userPageRendersSuccessfully()
     {
         System.out.println("Testing userPageRendersSuccessfully ");
-        tester.getRequest().getSession().setAttribute("userName", "Test user 1");
-        System.out.println("Uesr name in session:" + tester.getHttpSession().getAttribute("userName"));
+        System.out.println("Getting AppSession");
+        WebSession webSession = (WebSession)tester.getSession();
+        AppSession appSession = (AppSession)webSession;
+        appSession.setUserName("Test user 1");
+        System.out.println("Uesr name in session:" + appSession.getUserName());
         //start and render the test page
         tester.startPage(UserPage.class);
         //assert rendered page class
         tester.assertRenderedPage(UserPage.class);
         tester.assertModelValue("txtUserName", "Test user 1");
+        webSession = (WebSession)tester.getSession();
+        appSession = (AppSession)webSession;
+        appSession.setUserName("Test user 2");
+        tester.startPage(UserPage.class);
+        //assert rendered page class
+        tester.assertRenderedPage(UserPage.class);
+        tester.assertModelValue("txtUserName", "Test user 2");
         System.out.println("Complete testing userPageRendersSuccessfully ");
     }
 }
