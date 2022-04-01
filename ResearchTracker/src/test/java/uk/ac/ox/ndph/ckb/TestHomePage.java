@@ -28,16 +28,16 @@ public class TestHomePage
         appSession.setUserName("Test user 1");
         System.out.println("Uesr name in session:" + appSession.getUserName());
         //start and render the test page
-        tester.startPage(UserPage.class);
+        tester.startPage(UserPage1.class);
         //assert rendered page class
-        tester.assertRenderedPage(UserPage.class);
+        tester.assertRenderedPage(UserPage1.class);
         tester.assertModelValue("txtUserName", "Test user 1");
         webSession = (WebSession)tester.getSession();
         appSession = (AppSession)webSession;
         appSession.setUserName("Test user 2");
-        tester.startPage(UserPage.class);
+        tester.startPage(UserPage1.class);
         //assert rendered page class
-        tester.assertRenderedPage(UserPage.class);
+        tester.assertRenderedPage(UserPage1.class);
         tester.assertModelValue("txtUserName", "Test user 2");
         System.out.println("Complete testing userPageRendersSuccessfully ");
     }
