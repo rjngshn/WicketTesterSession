@@ -23,10 +23,13 @@ public class TestUserPage2
     {
         System.out.println("Testing userPage2RendersSuccessfully ");
         System.out.println("Getting AppSession");
+        // https://stackoverflow.com/questions/71675884/accessing-attributes-of-session-throws-nullpointerexception-error-when-using-wi        
         WebSession webSession = (WebSession)tester.getSession();
         AppSession appSession = (AppSession)webSession;
         appSession.setUserName("Test user 1");
         System.out.println("Uesr name in session:" + appSession.getUserName());
+        //https://stackoverflow.com/questions/71708685/wickettester-fails-if-wicket-page-accesses-system-properties
+        System.setProperty("CKBRT_SiteAddress", "ResearchTracker_dev");
         //start and render the test page
         tester.startPage(UserPage2.class);
         //assert rendered page class
