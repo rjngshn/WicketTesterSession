@@ -22,7 +22,7 @@ public class RTApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-            return UserPage.class;
+            return UserPage1.class;
 	}
 
 	/**
